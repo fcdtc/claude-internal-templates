@@ -1,11 +1,11 @@
 {
-  "name": "claude-code-templates",
+  "name": "claude-internal-templates",
   "version": "1.21.14",
-  "description": "Component templates and tracking system for Claude Code",
+  "description": "Component templates and tracking system for Claude Internal",
   "main": "cli-tool/src/index.js",
   "bin": {
-    "claude-code-templates": "cli-tool/bin/create-claude-config.js",
-    "cct": "cli-tool/bin/create-claude-config.js"
+    "claude-internal-templates": "cli-tool/bin/create-claude-config.js",
+    "cit": "cli-tool/bin/create-claude-config.js"
   },
   "scripts": {
     "dev": "vercel dev",
@@ -37,12 +37,13 @@
     "@vercel/node": "^3.0.0"
   },
   "keywords": [
+    "claude-internal",
     "claude-code",
     "templates",
     "components",
     "tracking",
     "analytics"
   ],
-  "author": "Claude Code Templates",
+  "author": "Claude Internal Templates",
   "license": "MIT"
 }

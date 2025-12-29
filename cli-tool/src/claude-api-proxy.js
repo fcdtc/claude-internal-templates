@@ -9,7 +9,7 @@ class ClaudeAPIProxy {
   constructor() {
     this.app = express();
     this.port = 3335;
-    this.claudeDir = path.join(os.homedir(), '.claude');
+    this.claudeDir = path.join(os.homedir(), '.claude-internal');
     
     // Store active sessions and conversation contexts
     this.activeSessions = new Map();

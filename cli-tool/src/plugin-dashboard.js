@@ -12,7 +12,7 @@ class PluginDashboard {
     this.port = 3336;
     this.httpServer = null;
     this.homeDir = os.homedir();
-    this.claudeDir = path.join(this.homeDir, '.claude');
+    this.claudeDir = path.join(this.homeDir, '.claude-internal');
     this.settingsFile = path.join(this.claudeDir, 'settings.json');
   }
 

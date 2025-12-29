@@ -288,7 +288,7 @@ function getHookDescription(hook, matcher, type) {
  */
 function getHooksForLanguage(language) {
   const templateDir = path.join(__dirname, '../templates', language);
-  const settingsPath = path.join(templateDir, '.claude', 'settings.json');
+  const settingsPath = path.join(templateDir, '.claude-internal', 'settings.json');
   
   return getHooksFromSettings(settingsPath);
 }

@@ -289,7 +289,7 @@ async function createClaudeConfig(options = {}) {
     try {
       const os = require('os');
       const homeDir = os.homedir();
-      const claudeDir = path.join(homeDir, '.claude');
+      const claudeDir = path.join(homeDir, '.claude-internal');
 
       // Initialize ConversationAnalyzer and SessionSharing
       const conversationAnalyzer = new ConversationAnalyzer(claudeDir);
@@ -521,7 +521,7 @@ async function installIndividualAgent(agentName, targetDir, options) {
     const agentContent = await response.text();
     
     // Create .claude/agents directory if it doesn't exist
-    const agentsDir = path.join(targetDir, '.claude', 'agents');
+    const agentsDir = path.join(targetDir, '.claude-internal', 'agents');
     await fs.ensureDir(agentsDir);
     
     // Write the agent file - always to flat .claude/agents directory
@@ -586,7 +586,7 @@ async function installIndividualCommand(commandName, targetDir, options) {
     const commandContent = await response.text();
     
     // Create .claude/commands directory if it doesn't exist
-    const commandsDir = path.join(targetDir, '.claude', 'commands');
+    const commandsDir = path.join(targetDir, '.claude-internal', 'commands');
     await fs.ensureDir(commandsDir);
     
     // Write the command file - always to flat .claude/commands directory
@@ -859,7 +859,7 @@ async function installIndividualSetting(settingName, targetDir, options) {
       }
       
       // Determine target directory and file based on selection
-      const claudeDir = path.join(currentTargetDir, '.claude');
+      const claudeDir = path.join(currentTargetDir, '.claude-internal');
       const targetSettingsFile = path.join(claudeDir, settingsFile);
       let existingConfig = {};
       
@@ -1183,7 +1183,7 @@ async function installIndividualHook(hookName, targetDir, options) {
       }
       
       // Determine target directory and file based on selection
-      const claudeDir = path.join(currentTargetDir, '.claude');
+      const claudeDir = path.join(currentTargetDir, '.claude-internal');
       const targetSettingsFile = path.join(claudeDir, settingsFile);
       let existingConfig = {};
       
@@ -1584,7 +1584,7 @@ async function installIndividualSkill(skillName, targetDir, options) {
     }
 
     // Create .claude/skills/skill-name directory (Anthropic standard structure)
-    const skillsDir = path.join(targetDir, '.claude', 'skills');
+    const skillsDir = path.join(targetDir, '.claude-internal', 'skills');
     await fs.ensureDir(skillsDir);
 
     // Write all downloaded files
@@ -1796,7 +1796,7 @@ async function installMultipleComponents(options, targetDir) {
         }
         
         // Save YAML to workflows directory
-        const workflowsDir = path.join(targetDir, '.claude', 'workflows');
+        const workflowsDir = path.join(targetDir, '.claude-internal', 'workflows');
         const workflowFile = path.join(workflowsDir, `${workflowName}.yaml`);
         
         await fs.ensureDir(workflowsDir);
@@ -1973,7 +1973,7 @@ async function installWorkflow(workflowHash, targetDir, options) {
       yamlContent = generateWorkflowYAML(workflowData);
     }
     
-    const workflowsDir = path.join(targetDir, '.claude', 'workflows');
+    const workflowsDir = path.join(targetDir, '.claude-internal', 'workflows');
     const workflowFile = path.join(workflowsDir, `${workflowData.name.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.yaml`);
     
     // Ensure .claude/workflows directory exists
@@ -2161,7 +2161,7 @@ async function installComponentFromWorkflow(componentData, type, targetDir, opti
     
     if (type === 'agent') {
       // Create .claude/agents directory if it doesn't exist
-      const agentsDir = path.join(targetDir, '.claude', 'agents');
+      const agentsDir = path.join(targetDir, '.claude-internal', 'agents');
       await fs.ensureDir(agentsDir);
       
       // For agents, handle category subdirectories
@@ -2175,7 +2175,7 @@ async function installComponentFromWorkflow(componentData, type, targetDir, opti
       
     } else if (type === 'command') {
       // Create .claude/commands directory if it doesn't exist
-      const commandsDir = path.join(targetDir, '.claude', 'commands');
+      const commandsDir = path.join(targetDir, '.claude-internal', 'commands');
       await fs.ensureDir(commandsDir);
       targetPath = path.join(commandsDir, `${fileName}.md`);
       
@@ -2720,7 +2720,7 @@ async function executeCloudflareSandbox(options, targetDir) {
     const spinner = ora('Installing Cloudflare sandbox component...').start();
 
     // Create .claude/sandbox/cloudflare directory
-    const sandboxDir = path.join(targetDir, '.claude', 'sandbox', 'cloudflare');
+    const sandboxDir = path.join(targetDir, '.claude-internal', 'sandbox', 'cloudflare');
     await fs.ensureDir(sandboxDir);
 
     // Copy Cloudflare component files
@@ -2934,7 +2934,7 @@ async function executeDockerSandbox(options, targetDir) {
     const spinner = ora('Installing Docker sandbox component...').start();
 
     // Create .claude/sandbox/docker directory
-    const sandboxDir = path.join(targetDir, '.claude', 'sandbox', 'docker');
+    const sandboxDir = path.join(targetDir, '.claude-internal', 'sandbox', 'docker');
     await fs.ensureDir(sandboxDir);
 
     // Copy Docker component files
@@ -3128,7 +3128,7 @@ async function executeE2BSandbox(options, targetDir) {
     const spinner = ora('Installing E2B sandbox component...').start();
     
     // Create .claude/sandbox directory
-    const sandboxDir = path.join(targetDir, '.claude', 'sandbox');
+    const sandboxDir = path.join(targetDir, '.claude-internal', 'sandbox');
     await fs.ensureDir(sandboxDir);
     
     // Copy E2B component files from the installed package

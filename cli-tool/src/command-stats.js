@@ -34,7 +34,7 @@ function estimateTokens(text) {
  * @returns {Array} Array of command analysis results
  */
 async function analyzeCommands(targetDir = process.cwd()) {
-  const commandsDir = path.join(targetDir, '.claude', 'commands');
+  const commandsDir = path.join(targetDir, '.claude-internal', 'commands');
   
   // Check if .claude/commands directory exists
   if (!fs.existsSync(commandsDir)) {

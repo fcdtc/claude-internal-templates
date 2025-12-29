@@ -18,7 +18,7 @@ function getAvailableCommands(language) {
   const commands = [];
   
   // Scan main .claude/commands directory
-  const mainCommandsDir = path.join(languageDir, '.claude', 'commands');
+  const mainCommandsDir = path.join(languageDir, '.claude-internal', 'commands');
   if (fs.existsSync(mainCommandsDir)) {
     const mainCommands = scanCommandsInDirectory(mainCommandsDir, 'core');
     commands.push(...mainCommands);
@@ -32,7 +32,7 @@ function getAvailableCommands(language) {
     });
     
     frameworkDirs.forEach(framework => {
-      const frameworkCommandsDir = path.join(frameworksDir, framework, '.claude', 'commands');
+      const frameworkCommandsDir = path.join(frameworksDir, framework, '.claude-internal', 'commands');
       if (fs.existsSync(frameworkCommandsDir)) {
         const frameworkCommands = scanCommandsInDirectory(frameworkCommandsDir, framework);
         commands.push(...frameworkCommands);

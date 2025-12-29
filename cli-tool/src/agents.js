@@ -136,7 +136,7 @@ function getAgentsForLanguageAndFramework(language, framework) {
  */
 async function installAgents(selectedAgents, projectPath = process.cwd()) {
   try {
-    const claudeDir = path.join(projectPath, '.claude');
+    const claudeDir = path.join(projectPath, '.claude-internal');
     const agentsDir = path.join(claudeDir, 'agents');
     
     // Create .claude/agents directory if it doesn't exist
@@ -186,7 +186,7 @@ async function installAgents(selectedAgents, projectPath = process.cwd()) {
  */
 async function getInstalledAgents(projectPath = process.cwd()) {
   try {
-    const agentsDir = path.join(projectPath, '.claude', 'agents');
+    const agentsDir = path.join(projectPath, '.claude-internal', 'agents');
     
     if (!(await fs.pathExists(agentsDir))) {
       return [];

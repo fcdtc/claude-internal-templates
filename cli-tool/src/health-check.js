@@ -538,7 +538,7 @@ class HealthChecker {
 
   checkPermissions() {
     const homeDir = os.homedir();
-    const claudeDir = path.join(homeDir, '.claude');
+    const claudeDir = path.join(homeDir, '.claude-internal');
     
     try {
       if (fs.existsSync(claudeDir)) {
@@ -594,7 +594,7 @@ class HealthChecker {
 
   checkConfigurationFiles() {
     const currentDir = process.cwd();
-    const claudeDir = path.join(currentDir, '.claude');
+    const claudeDir = path.join(currentDir, '.claude-internal');
     
     if (fs.existsSync(claudeDir)) {
       const files = fs.readdirSync(claudeDir);
@@ -729,7 +729,7 @@ class HealthChecker {
 
   checkProjectCommands() {
     const currentDir = process.cwd();
-    const commandsDir = path.join(currentDir, '.claude', 'commands');
+    const commandsDir = path.join(currentDir, '.claude-internal', 'commands');
     
     if (fs.existsSync(commandsDir)) {
       const commands = fs.readdirSync(commandsDir).filter(file => file.endsWith('.md'));
@@ -747,7 +747,7 @@ class HealthChecker {
 
   checkPersonalCommands() {
     const homeDir = os.homedir();
-    const commandsDir = path.join(homeDir, '.claude', 'commands');
+    const commandsDir = path.join(homeDir, '.claude-internal', 'commands');
     
     if (fs.existsSync(commandsDir)) {
       const commands = fs.readdirSync(commandsDir).filter(file => file.endsWith('.md'));
@@ -765,7 +765,7 @@ class HealthChecker {
 
   checkCommandSyntax() {
     const currentDir = process.cwd();
-    const commandsDir = path.join(currentDir, '.claude', 'commands');
+    const commandsDir = path.join(currentDir, '.claude-internal', 'commands');
     
     if (!fs.existsSync(commandsDir)) {
       return {
@@ -802,7 +802,7 @@ class HealthChecker {
 
   checkProjectAgents() {
     const currentDir = process.cwd();
-    const agentsDir = path.join(currentDir, '.claude', 'agents');
+    const agentsDir = path.join(currentDir, '.claude-internal', 'agents');
     
     if (fs.existsSync(agentsDir)) {
       const agents = this.countAgentsRecursively(agentsDir);
@@ -820,7 +820,7 @@ class HealthChecker {
 
   checkPersonalAgents() {
     const homeDir = os.homedir();
-    const agentsDir = path.join(homeDir, '.claude', 'agents');
+    const agentsDir = path.join(homeDir, '.claude-internal', 'agents');
     
     if (fs.existsSync(agentsDir)) {
       const agents = this.countAgentsRecursively(agentsDir);
@@ -857,7 +857,7 @@ class HealthChecker {
 
   checkAgentSyntax() {
     const currentDir = process.cwd();
-    const agentsDir = path.join(currentDir, '.claude', 'agents');
+    const agentsDir = path.join(currentDir, '.claude-internal', 'agents');
     
     if (!fs.existsSync(agentsDir)) {
       return {
@@ -925,7 +925,7 @@ class HealthChecker {
 
   checkUserHooks() {
     const homeDir = os.homedir();
-    const settingsPath = path.join(homeDir, '.claude', 'settings.json');
+    const settingsPath = path.join(homeDir, '.claude-internal', 'settings.json');
     
     if (fs.existsSync(settingsPath)) {
       try {
@@ -951,7 +951,7 @@ class HealthChecker {
 
   checkProjectHooks() {
     const currentDir = process.cwd();
-    const settingsPath = path.join(currentDir, '.claude', 'settings.json');
+    const settingsPath = path.join(currentDir, '.claude-internal', 'settings.json');
     
     if (fs.existsSync(settingsPath)) {
       try {
@@ -977,7 +977,7 @@ class HealthChecker {
 
   checkLocalHooks() {
     const currentDir = process.cwd();
-    const settingsPath = path.join(currentDir, '.claude', 'settings.local.json');
+    const settingsPath = path.join(currentDir, '.claude-internal', 'settings.local.json');
     
     if (fs.existsSync(settingsPath)) {
       try {
@@ -1003,9 +1003,9 @@ class HealthChecker {
 
   checkHookCommands() {
     const hookSettingsFiles = [
-      path.join(os.homedir(), '.claude', 'settings.json'),
-      path.join(process.cwd(), '.claude', 'settings.json'),
-      path.join(process.cwd(), '.claude', 'settings.local.json')
+      path.join(os.homedir(), '.claude-internal', 'settings.json'),
+      path.join(process.cwd(), '.claude-internal', 'settings.json'),
+      path.join(process.cwd(), '.claude-internal', 'settings.local.json')
     ];
     
     let totalHooks = 0;
@@ -1109,7 +1109,7 @@ class HealthChecker {
 
   checkUserSettings() {
     const homeDir = os.homedir();
-    const userSettingsPath = path.join(homeDir, '.claude', 'settings.json');
+    const userSettingsPath = path.join(homeDir, '.claude-internal', 'settings.json');
     
     if (!fs.existsSync(userSettingsPath)) {
       return {
@@ -1138,7 +1138,7 @@ class HealthChecker {
 
   checkProjectSettings() {
     const currentDir = process.cwd();
-    const projectSettingsPath = path.join(currentDir, '.claude', 'settings.json');
+    const projectSettingsPath = path.join(currentDir, '.claude-internal', 'settings.json');
     
     if (!fs.existsSync(projectSettingsPath)) {
       return {
@@ -1167,7 +1167,7 @@ class HealthChecker {
 
   checkLocalSettings() {
     const currentDir = process.cwd();
-    const localSettingsPath = path.join(currentDir, '.claude', 'settings.local.json');
+    const localSettingsPath = path.join(currentDir, '.claude-internal', 'settings.local.json');
     
     if (!fs.existsSync(localSettingsPath)) {
       return {

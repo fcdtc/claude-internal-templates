@@ -21,7 +21,7 @@ function estimateTokens(text) {
 }
 
 async function analyzeHooks(targetDir = process.cwd()) {
-  const settingsPath = path.join(targetDir, '.claude', 'settings.json');
+  const settingsPath = path.join(targetDir, '.claude-internal', 'settings.json');
   
   console.log(chalk.blue('🔍 Analyzing automation hooks...'));
   console.log(chalk.gray(`Scanning: ${settingsPath}`));

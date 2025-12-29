@@ -14,7 +14,7 @@ const TEMPLATES_CONFIG = {
     description: 'Optimized for modern JS/TS development',
     files: [
       { source: 'javascript-typescript/CLAUDE.md', destination: 'CLAUDE.md' },
-      { source: 'javascript-typescript/.claude', destination: '.claude' },
+      { source: 'javascript-typescript/.claude', destination: '.claude-internal' },
       { source: 'javascript-typescript/.claude/settings.json', destination: '.claude/settings.json' },
       { source: 'javascript-typescript/.mcp.json', destination: '.mcp.json' }
     ],
@@ -50,7 +50,7 @@ const TEMPLATES_CONFIG = {
     description: 'Optimized for Python development',
     files: [
       { source: 'python/CLAUDE.md', destination: 'CLAUDE.md' },
-      { source: 'python/.claude', destination: '.claude' },
+      { source: 'python/.claude', destination: '.claude-internal' },
       { source: 'python/.claude/settings.json', destination: '.claude/settings.json' },
       { source: 'python/.mcp.json', destination: '.mcp.json' }
     ],
@@ -81,7 +81,7 @@ const TEMPLATES_CONFIG = {
     description: 'Optimized for Ruby development with modern tools',
     files: [
       { source: 'ruby/CLAUDE.md', destination: 'CLAUDE.md' },
-      { source: 'ruby/.claude', destination: '.claude' },
+      { source: 'ruby/.claude', destination: '.claude-internal' },
       { source: 'ruby/.claude/settings.json', destination: '.claude/settings.json' },
       { source: 'ruby/.mcp.json', destination: '.mcp.json' }
     ],

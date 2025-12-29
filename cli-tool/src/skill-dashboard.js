@@ -13,7 +13,7 @@ class SkillDashboard {
     this.port = 3337;
     this.httpServer = null;
     this.homeDir = os.homedir();
-    this.claudeDir = path.join(this.homeDir, '.claude');
+    this.claudeDir = path.join(this.homeDir, '.claude-internal');
     this.personalSkillsDir = path.join(this.claudeDir, 'skills');
   }
 
@@ -31,7 +31,7 @@ class SkillDashboard {
       console.log(chalk.gray(`✓ Found ${this.personalSkills.length} personal skill(s)`));
 
       // Load project skills (if in a project directory)
-      const projectSkillsDir = path.join(process.cwd(), '.claude', 'skills');
+      const projectSkillsDir = path.join(process.cwd(), '.claude-internal', 'skills');
       console.log(chalk.gray(`📂 Scanning project skills: ${projectSkillsDir}`));
       this.projectSkills = await this.loadSkillsFromDirectory(projectSkillsDir, 'Project');
       console.log(chalk.gray(`✓ Found ${this.projectSkills.length} project skill(s)`));

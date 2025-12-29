@@ -267,7 +267,7 @@ app.post('/api/install-agent', async (req, res) => {
 
 async function checkAndInstallAgent(agentName, task) {
     // Check if agent exists in .claude directory
-    const claudeDir = path.join(process.cwd(), '.claude');
+    const claudeDir = path.join(process.cwd(), '.claude-internal');
     const agentPath = path.join(claudeDir, 'agents', `${agentName}.md`);
     
     if (fs.existsSync(agentPath)) {

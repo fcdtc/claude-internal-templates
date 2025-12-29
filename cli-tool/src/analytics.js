@@ -83,7 +83,7 @@ class ClaudeAnalytics {
 
   async initialize() {
     const homeDir = os.homedir();
-    this.claudeDir = path.join(homeDir, '.claude');
+    this.claudeDir = path.join(homeDir, '.claude-internal');
     this.claudeDesktopDir = path.join(homeDir, 'Library', 'Application Support', 'Claude');
     this.claudeStatsigDir = path.join(this.claudeDir, 'statsig');
 
@@ -1629,12 +1629,12 @@ class ClaudeAnalytics {
     const homeDir = os.homedir();
     
     // Define agent paths (user level and project level)
-    const userAgentsDir = path.join(homeDir, '.claude', 'agents');
+    const userAgentsDir = path.join(homeDir, '.claude-internal', 'agents');
     const projectAgentsDirs = [];
     
     try {
       // 1. Check current working directory for .claude/agents
-      const currentProjectAgentsDir = path.join(process.cwd(), '.claude', 'agents');
+      const currentProjectAgentsDir = path.join(process.cwd(), '.claude-internal', 'agents');
       if (await fs.pathExists(currentProjectAgentsDir)) {
         const currentProjectName = path.basename(process.cwd());
         projectAgentsDirs.push({
@@ -1649,7 +1649,7 @@ class ClaudeAnalytics {
       
       // Search up to 3 levels up for .claude/agents
       for (let i = 0; i < 3 && parentDir !== currentDir; i++) {
-        const parentProjectAgentsDir = path.join(parentDir, '.claude', 'agents');
+        const parentProjectAgentsDir = path.join(parentDir, '.claude-internal', 'agents');
         
         if (await fs.pathExists(parentProjectAgentsDir)) {
           const parentProjectName = path.basename(parentDir);
@@ -1673,7 +1673,7 @@ class ClaudeAnalytics {
       if (await fs.pathExists(projectsDir)) {
         const projectDirs = await fs.readdir(projectsDir);
         for (const projectDir of projectDirs) {
-          const projectAgentsDir = path.join(projectsDir, projectDir, '.claude', 'agents');
+          const projectAgentsDir = path.join(projectsDir, projectDir, '.claude-internal', 'agents');
           if (await fs.pathExists(projectAgentsDir)) {
             projectAgentsDirs.push({
               path: projectAgentsDir,

@@ -28,7 +28,7 @@ class ChatsMobile {
     
     // Initialize ConversationAnalyzer with proper parameters
     const homeDir = os.homedir();
-    const claudeDir = path.join(homeDir, '.claude');
+    const claudeDir = path.join(homeDir, '.claude-internal');
     this.conversationAnalyzer = new ConversationAnalyzer(claudeDir, this.dataCache);
 
     // Initialize SessionSharing for export/import functionality
@@ -821,7 +821,7 @@ class ChatsMobile {
   async setupFileWatching() {
     try {
       const homeDir = os.homedir();
-      const claudeDir = path.join(homeDir, '.claude');
+      const claudeDir = path.join(homeDir, '.claude-internal');
       
       this.fileWatcher.setupFileWatchers(
         claudeDir,
@@ -1004,7 +1004,7 @@ class ChatsMobile {
   async loadInitialData() {
     try {
       const homeDir = os.homedir();
-      const claudeDataDir = path.join(homeDir, '.claude');
+      const claudeDataDir = path.join(homeDir, '.claude-internal');
       
       if (await fs.pathExists(claudeDataDir)) {
         // Use ConversationAnalyzer to load conversations

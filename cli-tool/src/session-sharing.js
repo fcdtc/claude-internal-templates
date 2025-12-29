@@ -355,7 +355,7 @@ class SessionSharing {
    */
   async installSession(sessionData, options = {}) {
     const homeDir = os.homedir();
-    const claudeDir = path.join(homeDir, '.claude');
+    const claudeDir = path.join(homeDir, '.claude-internal');
 
     // Determine project directory
     const projectName = sessionData.conversation.project || 'shared-session';

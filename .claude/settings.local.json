@@ -45,7 +45,11 @@
       "Bash(sed:*)",
       "Bash(xargs:*)",
       "Bash(git checkout:*)",
-      "Bash(gh pr view:*)"
+      "Bash(gh pr view:*)",
+      "Bash(for:*)",
+      "Bash(do)",
+      "Bash(done:*)",
+      "Bash(npm unlink:*)"
     ],
     "deny": []
   },

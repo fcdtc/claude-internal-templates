@@ -54,3 +54,10 @@ test-cloudflare/
 
 # Deployment
 .vercel
+
+# 忽略所有以 . 开头的隐藏文件和文件夹
+.*
+
+# 但不忽略 .gitignore 本身（否则这个规则文件也会被忽略）
+!.gitignore
+

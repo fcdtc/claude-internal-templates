@@ -79,6 +79,76 @@ npx claude-code-templates@latest --mcp database/postgresql-integration --yes
 | **🪝 Hooks** | Automation triggers | Pre-commit validation, post-completion actions |
 | **🎨 Skills** | Reusable capabilities with progressive disclosure | PDF processing, Excel automation, custom workflows |
 
+## 🎯 安装范围控制
+
+### 1. 通过目标目录控制
+
+使用 `--directory` 选项控制组件的安装位置：
+
+```bash
+# 安装到当前项目目录（默认）
+npx claude-code-templates@latest --agent development-tools/code-reviewer --yes
+
+# 安装到指定项目目录
+npx claude-code-templates@latest --agent development-tools/code-reviewer --directory /path/to/project --yes
+
+# 安装到用户主目录（全局/用户级别）
+npx claude-code-templates@latest --agent development-tools/code-reviewer --directory ~/ --yes
+```
+
+### 2. 组件类型对应的安装路径
+
+| 组件类型 | 安装路径 | 说明 |
+|---------|---------|------|
+| **Agents** | `{targetDir}/.claude-internal/agents/` | 始终安装到目标目录 |
+| **Commands** | `{targetDir}/.claude-internal/commands/` | 始终安装到目标目录 |
+| **Skills** | `{targetDir}/.claude-internal/skills/` | 始终安装到目标目录 |
+| **Settings** | 见下方范围选项 | 可选择不同安装范围 |
+| **Hooks** | 见下方范围选项 | 可选择不同安装范围 |
+
+### 3. Settings 和 Hooks 的安装范围
+
+对于 **Settings** 和 **Hooks** 组件，可以选择 4 种安装范围：
+
+| 范围 | 安装位置 | 说明 |
+|------|---------|------|
+| `user` | `~/.claude/settings.json` | **全局级别** - 适用于所有项目 |
+| `project` | `{project}/.claude/settings.json` | **项目级别** - 团队共享 |
+| `local` | `{project}/.claude/settings.local.json` | **本地级别** - 个人配置，不提交到版本控制（使用 `--yes` 时的默认值） |
+| `enterprise` | 系统路径 | **企业级** - 系统级策略（需要管理员权限） |
+
+### 4. 交互模式 vs 静默模式
+
+**交互模式**（不带 `--yes`）：
+- 对于 settings 和 hooks，会提示您选择安装位置
+- 可以同时选择多个位置
+
+**静默模式**（带 `--yes`）：
+- Settings 和 hooks 默认使用 `local` 范围
+- 无提示，使用默认值
+
+### 5. 使用示例
+
+```bash
+# 项目级别安装（settings 安装到 .claude/settings.local.json）
+cd /my/project
+npx claude-code-templates@latest --setting performance/mcp-timeouts --yes
+
+# 全局/用户级别安装（安装到用户主目录）
+npx claude-code-templates@latest --setting performance/mcp-timeouts --directory ~/ --yes
+
+# 交互模式 - 会询问安装位置（可选择 user/project/local/enterprise）
+npx claude-code-templates@latest --setting performance/mcp-timeouts
+
+# 在指定目录的本地范围安装
+npx claude-code-templates@latest --hook git/pre-commit-validation --directory /workspace/my-project --yes
+```
+
+> **注意**：目前没有直接的 `--global` 或 `--local` 标志。安装范围由以下因素控制：
+> 1. 工作目录（通过 `--directory` 选项）
+> 2. 交互式提示（对于 settings/hooks）或 `--yes` 的默认值
+> 3. 目标目录决定了安装是项目本地还是全局
+
 ## 🛠️ Additional Tools
 
 Beyond the template catalog, Claude Code Templates includes powerful development tools:

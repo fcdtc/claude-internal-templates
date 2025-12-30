@@ -49,7 +49,10 @@
       "Bash(for:*)",
       "Bash(do)",
       "Bash(done:*)",
-      "Bash(npm unlink:*)"
+      "Bash(npm unlink:*)",
+      "Bash(npm install:*)",
+      "Bash(cit:*)",
+      "WebFetch(domain:www.aitmpl.com)"
     ],
     "deny": []
   },
